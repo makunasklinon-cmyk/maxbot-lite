@@ -1,0 +1,19 @@
+# доступ к аккаунту и личное — в репозиторий не попадает НИКОГДА
+.env
+max_session/
+max_session_copy/
+downloads/
+logs/
+*.png
+*.db
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.DS_Store
+Thumbs.db
+# персональные инструменты с доступом к аккаунту (если положишь свои) —
+# в публичный репозиторий экстракторы сессии не публикуем
+session_dump*.py
+token-*
+storage_state-*
