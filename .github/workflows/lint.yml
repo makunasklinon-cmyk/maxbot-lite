@@ -1,0 +1,26 @@
+name: lint
+
+# Дешёвая проверка на пуш/PR: не ловит логические баги, только явные
+# опечатки и синтаксис — до того, как их поймает случайный форкающий.
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+jobs:
+  ruff-and-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Синтаксис (compileall) — ловит опечатки, не требует зависимостей
+        run: python -m compileall -q maxbot_lite.py addons
+
+      - name: ruff
+        run: |
+          pip install ruff
+          ruff check maxbot_lite.py addons
